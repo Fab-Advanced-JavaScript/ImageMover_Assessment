@@ -1,49 +1,19 @@
+
 const express = require('express');
 const app = express();
+const writer = require('./writeToFile');
+// const userData = require('./user.json')
 const port = 1337
 app.use(express.json()) // for parsing application/json
-
-user_info = {
-    Username: "00d23c55-51b4-49e3-a1ba-8e9b2685ab70",
-    UserAttributes: [
-        {
-            Name: "sub",
-            Value: "00d23c55-51b4-49e3-a1ba-8e9b2685ab70"
-        },
-        {
-            Name: "email_verified",
-            Value: "true"
-        },
-        {
-            Name: "email",
-            Value: "sally@example.com"
-        },
-        {
-            Name: "given_name",
-            Value: "Sally"
-        },
-        {
-            Name: "family_name",
-            Value: "Slingshot"
-        },
-        {
-            Name: "custom:tags",
-            Value: "hockey,basketball,baseball"
-        }
-    ],
-    UserCreateDate: "2021-04-13T15:50:42.802Z",
-    UserLastModifiedDate: "2021-04-13T15:50:51.671Z",
-    Enabled: true,
-    UserStatus: "CONFIRMED"
-}
+let userData = JSON.parse(writer.data)
 /**
  * restful to see the data on the browser
  * @type {[type]}
  */
 app.get('/', (req, res) => {
-    let data = process_naming()
+    let obj = {}
+    let data = process_naming(obj)
     res.json(data)
-
 })
 /**
  * this is used to process the data inside the user_info object
@@ -52,20 +22,19 @@ app.get('/', (req, res) => {
  */
 const process_naming = (obj) => {
     obj = {
-        Username : user_info.Username,
-        UserCreateDate: user_info.UserCreateDate,
-        UserLastModifiedDate: user_info.UserLastModifiedDate,
-        Enabled: user_info.Enabled,
-        UserStatus: user_info.UserStatus
+        Username : userData.Username,
+        UserCreateDate: userData.UserCreateDate,
+        UserLastModifiedDate: userData.UserLastModifiedDate,
+        Enabled: userData.Enabled,
+        UserStatus: userData.UserStatus
     }
-    let userAttr = user_info.UserAttributes;
+    let userAttr = userData.UserAttributes;
     userAttr.map(attr => {
         checkProperties(attr, obj)
     })
     obj.DisplayName = fullName(obj.GivenName, obj.FamilyName);
     let format = data_formating(obj)
     return format
-
 }
 /**
  * /
@@ -114,7 +83,6 @@ const checkProperties = (item, obj) => {
     else if(item.Name === 'custom:tags')
         obj.Tags = item.Value.split(',')
 }
-
 /**
  *
  */
