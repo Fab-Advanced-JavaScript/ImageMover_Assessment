@@ -5,7 +5,7 @@ const writer = require('./writeToFile');
 // const userData = require('./user.json')
 const port = 1337
 app.use(express.json()) // for parsing application/json
-let userData = JSON.parse(writer.data)
+const userData = JSON.parse(writer.data)
 /**
  * restful to see the data on the browser
  * @type {[type]}
