@@ -5,10 +5,10 @@ const writer = require('./writeToFile');
 // const userData = require('./user.json')
 const port = 1337
 app.use(express.json()) // for parsing application/json
-const userData = JSON.parse(writer.data)
+const userData = JSON.parse(writer.data) // parse the loaded data to JSON
 /**
  * restful to see the data on the browser
- * @type {[type]}
+ * @type {[json]}
  */
 app.get('/', (req, res) => {
     let obj = {}
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 /**
  * this is used to process the data inside the user_info object
  * in order to create a new formatted object
- * @return {[type]} [description]
+ * @return {formatted object}
  */
 const process_naming = (obj) => {
     obj = {
@@ -38,17 +38,16 @@ const process_naming = (obj) => {
 }
 /**
  * /
- * @param  {[type]} gv_name                [given name]
- * @param  {[type]} fmi_name               [family name]
+ * @param  {[type]} gv_name
+ * @param  {[type]} fam_name 
  * @return this function return full name
  */
-const fullName = (gv_name, fmi_name) =>{
-    return gv_name + ', ' + fmi_name
+const fullName = (gv_name, fam_name) =>{
+    return gv_name + ', ' + fam_name
 }
 /**
- * [data_formating description]
- * @param  {[type]} obj               [description]
- * @return {[type]}     [description]
+ * [format the entire obj]
+ * @param  {object} containing properties with their value
  */
 const data_formating = (obj) => {
     return {
