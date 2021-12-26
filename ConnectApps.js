@@ -1,11 +1,9 @@
 
 const express = require('express');
 const app = express();
-const writer = require('./writeToFile');
-// const userData = require('./user.json')
-const port = 1337
 app.use(express.json()) // for parsing application/json
-const userData = JSON.parse(writer.data) // parse the loaded data to JSON
+const userData = require('./user_info').data;
+const port = 1337
 /**
  * restful to see the data on the browser
  * @type {[json]}
@@ -39,7 +37,7 @@ const process_naming = (obj) => {
 /**
  * /
  * @param  {[type]} gv_name
- * @param  {[type]} fam_name 
+ * @param  {[type]} fam_name
  * @return this function return full name
  */
 const fullName = (gv_name, fam_name) =>{

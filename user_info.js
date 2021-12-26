@@ -1,5 +1,5 @@
 const writeToJson = () => {
-    userInfo = {
+    return userInfo = {
         Username: "00d23c55-51b4-49e3-a1ba-8e9b2685ab70",
         UserAttributes: [
             {
@@ -32,7 +32,7 @@ const writeToJson = () => {
         Enabled: true,
         UserStatus: "CONFIRMED"
     }
-    return userJson = JSON.stringify(userInfo, null, '\t')
+    // return userJson = JSON.stringify(userInfo, null, '\t')
 }
 module.exports = {
     data : writeToJson()
