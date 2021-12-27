@@ -10,7 +10,7 @@ const port = 1337
  */
 app.get('/', (req, res) => {
     let obj = {}
-    let data = process_naming(obj)
+    let data = process_data_formating(obj)
     res.json(data)
 })
 /**
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
  * in order to create a new formatted object
  * @return {formatted object}
  */
-const process_naming = (obj) => {
+const process_data_formating = (obj) => {
 
     let userAttr = userData.UserAttributes;
     userAttr.map(attr => {
