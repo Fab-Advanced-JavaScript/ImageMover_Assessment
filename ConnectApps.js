@@ -19,13 +19,7 @@ app.get('/', (req, res) => {
  * @return {formatted object}
  */
 const process_naming = (obj) => {
-    obj = {
-        Username : userData.Username,
-        UserCreateDate: userData.UserCreateDate,
-        UserLastModifiedDate: userData.UserLastModifiedDate,
-        Enabled: userData.Enabled,
-        UserStatus: userData.UserStatus
-    }
+
     let userAttr = userData.UserAttributes;
     userAttr.map(attr => {
         checkProperties(attr, obj)
@@ -49,17 +43,17 @@ const fullName = (gv_name, fam_name) =>{
  */
 const data_formating = (obj) => {
     return {
-        Username : obj.Username,
+        Username : userData.Username,
         EmailVerified : obj.EmailVerified,
         Email : obj.Email,
         DisplayName : obj.DisplayName,
         GivenName : obj.GivenName,
         FamilyName : obj.FamilyName,
         Tags : obj.Tags,
-        UserCreateDate : obj.UserCreateDate,
-        UserLastModifiedDate : obj.UserLastModifiedDate,
-        Enabled : obj.Enabled,
-        UserStatus : obj.UserStatus
+        UserCreateDate : userData.UserCreateDate,
+        UserLastModifiedDate : userData.UserLastModifiedDate,
+        Enabled : userData.Enabled,
+        UserStatus : userData.UserStatus
     }
 }
 /**
